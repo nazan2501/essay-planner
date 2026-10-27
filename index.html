@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B2+ Opinion Essay Workshop | Unit 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; }
+        .step-content { display: none; }
+        .step-content.active { display: block; }
+        .progress-bar { transition: width 0.3s ease-in-out; }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-4xl mx-auto bg-slate-900 rounded-2xl shadow-2xl overflow-hidden border border-slate-800">
+        <!-- Header -->
+        <div class="bg-gradient-to-r from-violet-700 to-indigo-800 p-6 md:p-8 text-white">
+            <div class="flex items-center justify-between">
+                <span class="text-xs font-semibold uppercase tracking-wider bg-violet-900/60 px-3 py-1 rounded-full border border-violet-400/30">Unit 2: Developing Writing</span>
+                <span class="text-xs font-medium text-violet-200">Level: B2+ (Upper-Intermediate)</span>
+            </div>
+            <h1 class="text-2xl md:text-3xl font-bold mt-2">🎮 B2+ Opinion Essay Planner</h1>
+            <p class="text-violet-100 text-sm mt-1" id="activeTopicHeader">
+                Topic: "Video games influence the way people behave in real life. Age restrictions should be enforced more strictly and some games should be banned completely."
+            </p>
+            
+            <!-- Progress Bar -->
+            <div class="w-full bg-violet-950/80 rounded-full h-2.5 mt-6 border border-violet-500/20">
+                <div id="progressBar" class="bg-emerald-400 h-2.5 rounded-full progress-bar" style="width: 20%"></div>
+            </div>
+            <div class="flex justify-between text-xs mt-2 font-medium text-violet-200">
+                <span>1. Topic & Stance</span>
+                <span>2. Brainstorming</span>
+                <span>3. 5-Paragraph Plan</span>
+                <span>4. Reflection</span>
+                <span>5. Export Draft</span>
+            </div>
+        </div>
+
+        <div class="p-6 md:p-10 bg-slate-900">
+            
+            <!-- STEP 1: TOPIC & STANCE -->
+            <div id="step1" class="step-content active">
+                <div class="bg-slate-800/80 p-5 rounded-xl border border-slate-700/60 mb-6">
+                    <h3 class="text-xs uppercase font-bold text-violet-400 tracking-wider mb-2">Practice Task Prompt</h3>
+                    <p class="text-slate-200 font-medium text-base italic leading-relaxed">
+                        "Video games influence the way people behave in real life. Age restrictions should be enforced more strictly and some games should be banned completely."
+                    </p>
+                    <p class="text-xs text-slate-400 mt-2">Reflect on the real-life news case (e.g. young teenagers committing driving infractions after playing GTA) when taking your stance.</p>
+                </div>
+
+                <h3 class="font-semibold text-slate-200 mb-3 text-sm">Select Your Position / Stance:</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <button onclick="setOpinion('FOR')" class="opinion-btn p-4 bg-slate-800/40 border border-slate-700 rounded-xl hover:border-violet-500 hover:bg-violet-900/20 transition-all text-left">
+                        <span class="block font-bold text-base text-emerald-400">👍 AGREE / FOR BANNING & STRICT AGE LIMITS</span>
+                        <span class="text-xs text-slate-400 mt-1 block">Games directly cause desensitization, aggression, or dangerous real-life mimicking behavior.</span>
+                    </button>
+                    <button onclick="setOpinion('AGAINST')" class="opinion-btn p-4 bg-slate-800/40 border border-slate-700 rounded-xl hover:border-violet-500 hover:bg-violet-900/20 transition-all text-left">
+                        <span class="block font-bold text-base text-rose-400">👎 DISAGREE / AGAINST BANS & OVER-REGULATION</span>
+                        <span class="text-xs text-slate-400 mt-1 block">Parents—not governments—should supervise; games are entertainment, art, or social spaces.</span>
+                    </button>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-300 mb-2">Thesis Statement (Paragraph 1 - Core Position):</label>
+                    <div class="flex gap-2 mb-3 flex-wrap">
+                        <button onclick="applyStarter('thesisStatement', 'I am convinced that video games significantly influence behavior, and therefore stricter age limits are essential.')" class="text-xs bg-slate-800 border border-slate-700 text-slate-300 px-3 py-1.5 rounded-lg hover:bg-violet-600 hover:text-white transition-all">"I am convinced that..."</button>
+                        <button onclick="applyStarter('thesisStatement', 'Without doubt, while video games affect behavior, there is no justification for complete government bans.')" class="text-xs bg-slate-800 border border-slate-700 text-slate-300 px-3 py-1.5 rounded-lg hover:bg-violet-600 hover:text-white transition-all">"Without doubt..."</button>
+                        <button onclick="applyStarter('thesisStatement', 'It has long been my feeling that age restrictions must be strictly enforced to protect younger audiences.')" class="text-xs bg-slate-800 border border-slate-700 text-slate-300 px-3 py-1.5 rounded-lg hover:bg-violet-600 hover:text-white transition-all">"It has long been my feeling..."</button>
+                    </div>
+                    <textarea id="thesisStatement" class="w-full p-3 bg-slate-950 border border-slate-700 rounded-xl outline-none focus:ring-2 focus:ring-violet-500 text-sm text-slate-200 h-24" placeholder="Draft your main thesis statement here using B2+ strong opinion phrases..." oninput="saveDrafts()"></textarea>
+                </div>
+            </div>
+
+            <!-- STEP 2: BRAINSTORMING -->
+            <div id="step2" class="step-content">
+                <h2 class="text-xl font-semibold mb-2 flex items-center gap-2 text-white">
+                    <span class="bg-violet-500/20 text-violet-300 w-8 h-8 rounded-full flex items-center justify-center text-sm border border-violet-500/30">2</span>
+                    Brainstorming Arguments & Real-Life Evidence
+                </h2>
+                <p class="text-slate-400 mb-6 text-sm">Gather your primary points, opposing viewpoints, and real-life incidents before drafting paragraphs.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-slate-800/50 p-5 rounded-xl border border-emerald-900/40">
+                        <h3 class="font-bold text-emerald-400 mb-1">Arguments FOR Censorship/Restrictions</h3>
+                        <p class="text-xs text-emerald-300/70 mb-3 italic">Why do violent/realistic games harm young minds?</p>
+                        <textarea id="prosInput" class="w-full h-36 p-3 rounded-lg bg-slate-950 border border-slate-700 focus:ring-2 focus:ring-emerald-500 text-sm text-slate-200" placeholder="• Desensitization to real-world violence&#10;• Lack of cognitive maturity to separate fiction from reality&#10;• Cases of reckless behavior (e.g. 11-year-old taking parents' car after playing GTA)"></textarea>
+                    </div>
+                    <div class="bg-slate-800/50 p-5 rounded-xl border border-rose-900/40">
+                        <h3 class="font-bold text-rose-400 mb-1">Arguments AGAINST Bans / For Personal Choice</h3>
+                        <p class="text-xs text-rose-300/70 mb-3 italic">Why should games NOT be banned completely?</p>
+                        <textarea id="consInput" class="w-full h-36 p-3 rounded-lg bg-slate-950 border border-slate-700 focus:ring-2 focus:ring-rose-500 text-sm text-slate-200" placeholder="• Parental responsibility vs. state control&#10;• Millions play without displaying anti-social behavior&#10;• Freedom of creative expression / Video games as modern art"></textarea>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800/40 p-5 rounded-xl border border-slate-700">
+                    <h3 class="font-bold text-amber-400 mb-1 text-sm">Real-Life Incident or Specific Example:</h3>
+                    <p class="text-xs text-slate-400 mb-3">Include an example (e.g. news reports, high-speed car chase cases, gaming addiction studies) to validate your core claim.</p>
+                    <div class="flex gap-2 mb-2 flex-wrap">
+                        <button onclick="addStarter('exampleInput', 'A clear illustration of this is the recent news incident where')" class="text-xs bg-slate-950 border border-slate-700 text-slate-300 px-2.5 py-1 rounded hover:bg-violet-600 hover:text-white transition-all">"A clear illustration of this is..."</button>
+                        <button onclick="addStarter('exampleInput', 'To illustrate this point, statistics indicate that young gamers')" class="text-xs bg-slate-950 border border-slate-700 text-slate-300 px-2.5 py-1 rounded hover:bg-violet-600 hover:text-white transition-all">"To illustrate this point..."</button>
+                    </div>
+                    <textarea id="exampleInput" class="w-full h-24 p-3 rounded-lg bg-slate-950 border border-slate-700 focus:ring-2 focus:ring-amber-500 text-sm text-slate-200" placeholder="Write your specific real-world example here..."></textarea>
+                </div>
+            </div>
+
+            <!-- STEP 3: ESSAY STRUCTURE (BOOK PAGE 4 PLAN) -->
+            <div id="step3" class="step-content">
+                <h2 class="text-xl font-semibold mb-2 flex items-center gap-2 text-white">
+                    <span class="bg-violet-500/20 text-violet-300 w-8 h-8 rounded-full flex items-center justify-center text-sm border border-violet-500/30">3</span>
+                    Build Your 5-Paragraph Essay Plan
+                </h2>
+                <p class="text-slate-400 mb-6 text-sm">Follow the textbook essay structure (Page 27, Exercise 4) and utilize B2+ Writing Bank expressions.</p>
+
+                <div class="space-y-6">
+                    <!-- Paragraph 1 -->
+                    <div class="bg-slate-800/60 p-5 rounded-xl border border-slate-700">
+                        <div class="flex justify-between items-center mb-1">
+                            <h3 class="font-bold text-violet-300">Paragraph 1: Introduction, including your opinion</h3>
+                            <span class="text-xs text-slate-400">Hook + General Opinion + Thesis</span>
+                        </div>
+                        <p class="text-xs text-slate-400 mb-3">Introduce the controversy surrounding video games and state your firm thesis statement.</p>
+                        <div class="flex gap-2 mb-2 flex-wrap">
+                            <button onclick="addStarter('p1Draft', 'The question of whether video games cause violent behavior is a highly sensitive one. Without doubt,')" class="text-xs bg-slate-950 border border-slate-700 text-slate-300 px-2 py-1 rounded hover:bg-violet-600 hover:text-white">"Without doubt, ..."</button>
+                            <button onclick="addStarter('p1Draft', 'It is widely accepted that modern video games have become increasingly realistic. However,')" class="text-xs bg-slate-950 border border-slate-700 text-slate-300 px-2 py-1 rounded hover:bg-violet-600 hover:text-white">"It is widely accepted that..."</button>
+                        </div>
+                        <textarea id="p1Draft" class="w-full h-28 p-3 rounded-lg bg-slate-950 border border-slate-700 focus:ring-2 focus:ring-violet-500 text-sm text-slate-200" placeholder="Write Paragraph 1..."></textarea>
+                    </div>
+
+                    <!-- Paragraph 2 -->
+                    <div class="bg-slate-800/60 p-5 rounded-xl border border-slate-700">
+                        <div class="flex justify-between items-center mb-1">
+                            <h3 class="font-bold text-violet-300">Paragraph 2: Main point(s) in support of your opinion</h3>
+                            <span class="text-xs text-slate-400">Primary Argument</span>
+                        </div>
+                        <p class="text-xs text-slate-400 mb-3">Detail your strongest argument supporting your thesis.</p>
+                        <div class="flex gap-2 mb-2 flex-wrap">
+                            <button onclick="addStarter('p2Draft', 'Firstly, to my mind, there is no question that')" class="text-xs bg-slate-950 border border-slate-700 text-slate-300 px-2 py-1 rounded hover:bg-violet-600 hover:text-white">"Firstly, to my mind, there is no question that..."</button>
+                            <button onclick="addStarter('p2Draft', 'A major reason to support strict regulations is that')" class="text-xs bg-slate-950 border border-slate-700 text-slate-300 px-2 py-1 rounded hover:bg-violet-600 hover:text-white">"A major reason to support..."</button>
+                        </div>
+                        <textarea id="p2Draft" class="w-full h-28 p-3 rounded-lg bg-slate-950 border border-slate-700 focus:ring-2 focus:ring-violet-500 text-sm text-slate-200" placeholder="Write Paragraph 2..."></textarea>
+                    </div>
+
+                    <!-- Paragraph 3 -->
+                    <div class="bg-slate-800/60 p-5 rounded-xl border border-slate-700">
+                        <div class="flex justify-between items-center mb-1">
+                            <h3 class="font-bold text-violet-300">Paragraph 3: Additional point(s) in support + Real Example</h3>
+                            <span class="text-xs text-slate-400">Secondary Argument + Evidence</span>
+                        </div>
+                        <p class="text-xs text-slate-400 mb-3">Provide a second supporting point and integrate your real-life case study/example.</p>
+                        <div class="flex gap-2 mb-2 flex-wrap">
+                            <button onclick="addStarter('p3Draft', 'A second major reason is that... For example,')" class="text-xs bg-slate-950 border border-slate-700 text-slate-300 px-2 py-1 rounded hover:bg-violet-600 hover:text-white">"A second major reason is..."</button>
+                            <button onclick="addStarter('p3Draft', 'Furthermore, it has long been my feeling that')" class="text-xs bg-slate-950 border border-slate-700 text-slate-300 px-2 py-1 rounded hover:bg-violet-600 hover:text-white">"Furthermore, it has long been my feeling..."</button>
+                        </div>
+                        <textarea id="p3Draft" class="w-full h-28 p-3 rounded-lg bg-slate-950 border border-slate-700 focus:ring-2 focus:ring-violet-500 text-sm text-slate-200" placeholder="Write Paragraph 3..."></textarea>
+                    </div>
+
+                    <!-- Paragraph 4 -->
+                    <div class="bg-slate-800/60 p-5 rounded-xl border border-slate-700">
+                        <div class="flex justify-between items-center mb-1">
+                            <h3 class="font-bold text-violet-300">Paragraph 4: Point(s) in support of a different opinion + Counterargument(s)</h3>
+                            <span class="text-xs text-slate-400">Concession & Refutation</span>
+                        </div>
+                        <p class="text-xs text-slate-400 mb-3">Acknowledge the opposite side, then explain why their argument is flawed or insufficient.</p>
+                        <div class="flex gap-2 mb-2 flex-wrap">
+                            <button onclick="addStarter('p4Draft', 'Whilst it is true that gaming offers entertainment, there can be no justification for')" class="text-xs bg-slate-950 border border-slate-700 text-slate-300 px-2 py-1 rounded hover:bg-violet-600 hover:text-white">"Whilst it is true that... there can be no justification..."</button>
+                            <button onclick="addStarter('p4Draft', 'Despite the fact that opponents claim games are harmless, I cannot agree with')" class="text-xs bg-slate-950 border border-slate-700 text-slate-300 px-2 py-1 rounded hover:bg-violet-600 hover:text-white">"Despite the fact that... I cannot agree with..."</button>
+                            <button onclick="addStarter('p4Draft', 'On the whole, it is thought that parents should monitor games; nevertheless,')" class="text-xs bg-slate-950 border border-slate-700 text-slate-300 px-2 py-1 rounded hover:bg-violet-600 hover:text-white">"On the whole... nevertheless..."</button>
+                        </div>
+                        <textarea id="p4Draft" class="w-full h-28 p-3 rounded-lg bg-slate-950 border border-slate-700 focus:ring-2 focus:ring-violet-500 text-sm text-slate-200" placeholder="Write Paragraph 4 (Acknowledge opposing view, then disprove it)..."></textarea>
+                    </div>
+
+                    <!-- Paragraph 5 -->
+                    <div class="bg-slate-800/60 p-5 rounded-xl border border-slate-700">
+                        <div class="flex justify-between items-center mb-1">
+                            <h3 class="font-bold text-violet-300">Paragraph 5: Conclusion, restating and expanding your main point</h3>
+                            <span class="text-xs text-slate-400">Summary & Final Warning/Call to Action</span>
+                        </div>
+                        <p class="text-xs text-slate-400 mb-3">Summarize arguments without repeating exact words and end with a thought-provoking conclusion.</p>
+                        <div class="flex gap-2 mb-2 flex-wrap">
+                            <button onclick="addStarter('p5Draft', 'In conclusion, I am convinced that it is time to enforce stricter age limits. We must act before it is too late.')" class="text-xs bg-slate-950 border border-slate-700 text-slate-300 px-2 py-1 rounded hover:bg-violet-600 hover:text-white">"In conclusion, I am convinced that..."</button>
+                            <button onclick="addStarter('p5Draft', 'To conclude, there is no evidence to support complete censorship, but responsible enforcement is mandatory.')" class="text-xs bg-slate-950 border border-slate-700 text-slate-300 px-2 py-1 rounded hover:bg-violet-600 hover:text-white">"To conclude, there is no evidence..."</button>
+                        </div>
+                        <textarea id="p5Draft" class="w-full h-28 p-3 rounded-lg bg-slate-950 border border-slate-700 focus:ring-2 focus:ring-violet-500 text-sm text-slate-200" placeholder="Write Paragraph 5..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 4: REFLECTION & WRITING BANK CHECK -->
+            <div id="step4" class="step-content">
+                <h2 class="text-xl font-semibold mb-2 text-white">B2+ Quality Check & Self-Reflection</h2>
+                <p class="text-slate-400 mb-6 text-sm">Review your work against high-level writing criteria before finalizing your essay.</p>
+                
+                <div class="space-y-6">
+                    <div class="p-4 bg-slate-800/60 rounded-xl border border-slate-700">
+                        <label class="block font-medium mb-2 text-sm text-slate-200">How did you refute (disprove) the opposing viewpoint in Paragraph 4?</label>
+                        <input type="text" id="reflect1" class="w-full p-3 rounded-lg bg-slate-950 border border-slate-700 text-sm text-slate-200" placeholder="e.g. While opponents claim gaming is harmless, I highlighted real-world desensitization statistics...">
+                    </div>
+                    
+                    <div class="space-y-3 pt-2">
+                        <h4 class="font-bold text-slate-300 text-sm">B2+ Writing Bank Checklist:</h4>
+                        <div class="flex items-center gap-3 p-3 border border-slate-800 bg-slate-950/40 rounded-xl">
+                            <input type="checkbox" id="checkStrong" class="w-5 h-5 accent-violet-600">
+                            <label for="checkStrong" class="text-sm text-slate-300">I used at least 2 strong opinion expressions (*I am convinced that, To my mind, Without doubt*).</label>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 border border-slate-800 bg-slate-950/40 rounded-xl">
+                            <input type="checkbox" id="checkContrast" class="w-5 h-5 accent-violet-600">
+                            <label for="checkContrast" class="text-sm text-slate-300">I used advanced contrasting connectors (*Whilst it is true that..., Despite the fact that..., Nevertheless*).</label>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 border border-slate-800 bg-slate-950/40 rounded-xl">
+                            <input type="checkbox" id="checkStructure" class="w-5 h-5 accent-violet-600">
+                            <label for="checkStructure" class="text-sm text-slate-300">I followed the exact 5-paragraph structure recommended on Page 27.</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 5: EXPORT/DRAFT PREVIEW -->
+            <div id="step5" class="step-content">
+                <h2 class="text-xl font-semibold mb-2 text-white">Final Essay Preview</h2>
+                <p class="text-slate-400 mb-6 text-sm">Review your 5-paragraph essay structure below. You can copy the draft directly into your assignment folder.</p>
+
+                <div id="finalEssayPreview" class="p-6 bg-slate-950 border border-slate-800 rounded-2xl whitespace-pre-wrap text-slate-200 mb-6 leading-relaxed text-sm font-sans">
+                    <!-- Dynamic draft text loads here -->
+                </div>
+                
+                <button onclick="copyDraft()" class="w-full bg-violet-600 text-white font-bold py-4 rounded-xl hover:bg-violet-700 transition-colors shadow-lg flex items-center justify-center gap-2">
+                    📋 Copy Complete Essay Draft
+                </button>
+                <p id="copyMessage" class="text-center text-emerald-400 font-medium mt-3 hidden">Essay copied successfully to clipboard!</p>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="flex justify-between mt-10 pt-6 border-t border-slate-800">
+                <button id="prevBtn" onclick="moveStep(-1)" class="px-6 py-3 text-slate-400 font-semibold hover:bg-slate-800 rounded-xl transition-colors opacity-0 pointer-events-none">Back</button>
+                <button id="nextBtn" onclick="moveStep(1)" class="px-8 py-3 bg-violet-600 text-white font-bold rounded-xl hover:bg-violet-700 transition-shadow shadow-md">Next Step</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Reference: Writing Bank Toolkit -->
+    <div class="max-w-4xl mx-auto mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-slate-900 p-4 rounded-xl shadow border border-slate-800">
+            <h4 class="font-bold text-violet-400 text-xs mb-2 uppercase tracking-wide">Strong Opinions (B2+)</h4>
+            <ul class="text-xs text-slate-400 space-y-1">
+                <li>• Without doubt, ...</li>
+                <li>• I am convinced that...</li>
+                <li>• It has long been my feeling that...</li>
+                <li>• To my mind, there is no question...</li>
+            </ul>
+        </div>
+        <div class="bg-slate-900 p-4 rounded-xl shadow border border-slate-800">
+            <h4 class="font-bold text-violet-400 text-xs mb-2 uppercase tracking-wide">Contrasting / Counterarguments</h4>
+            <ul class="text-xs text-slate-400 space-y-1">
+                <li>• Whilst it is true that...</li>
+                <li>• Despite the fact that...</li>
+                <li>• Nevertheless, / However, ...</li>
+                <li>• There can be no justification for...</li>
+            </ul>
+        </div>
+        <div class="bg-slate-900 p-4 rounded-xl shadow border border-slate-800">
+            <h4 class="font-bold text-violet-400 text-xs mb-2 uppercase tracking-wide">General Opinions</h4>
+            <ul class="text-xs text-slate-400 space-y-1">
+                <li>• ... is widely accepted that ...</li>
+                <li>• It is often said that ...</li>
+                <li>• On the whole, it is thought that...</li>
+                <li>• It is generally believed that...</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        const totalSteps = 5;
+        let selectedStance = "";
+
+        function setOpinion(stance) {
+            selectedStance = stance;
+            const btns = document.querySelectorAll('.opinion-btn');
+            btns.forEach(btn => btn.classList.remove('border-violet-500', 'bg-violet-900/30', 'ring-1', 'ring-violet-500'));
+            event.currentTarget.classList.add('border-violet-500', 'bg-violet-900/30', 'ring-1', 'ring-violet-500');
+        }
+
+        function addStarter(fieldId, text) {
+            const textarea = document.getElementById(fieldId);
+            if(textarea.value.trim() === "") {
+                textarea.value = text + " ";
+            } else {
+                textarea.value = text + " " + textarea.value;
+            }
+            textarea.focus();
+        }
+
+        function applyStarter(fieldId, text) {
+            const inputField = document.getElementById(fieldId);
+            inputField.value = text + " ";
+            inputField.focus();
+            saveDrafts();
+        }
+
+        // Fix for missing saveDrafts function to prevent ReferenceError
+        function saveDrafts() {
+            const draftData = {
+                stance: selectedStance,
+                thesis: document.getElementById('thesisStatement')?.value || '',
+                pros: document.getElementById('prosInput')?.value || '',
+                cons: document.getElementById('consInput')?.value || '',
+                example: document.getElementById('exampleInput')?.value || '',
+                p1: document.getElementById('p1Draft')?.value || '',
+                p2: document.getElementById('p2Draft')?.value || '',
+                p3: document.getElementById('p3Draft')?.value || '',
+                p4: document.getElementById('p4Draft')?.value || '',
+                p5: document.getElementById('p5Draft')?.value || '',
+                reflect1: document.getElementById('reflect1')?.value || ''
+            };
+            try {
+                localStorage.setItem('b2_essay_planner_draft', JSON.stringify(draftData));
+            } catch (e) {
+                // Ignore local storage errors if constrained by sandbox
+            }
+        }
+
+        function moveStep(delta) {
+            const newStep = currentStep + delta;
+            
+            if (currentStep === 1 && delta > 0) {
+                if (document.getElementById('thesisStatement').value.trim() === "") {
+                    alert("Please formulate your thesis statement in Step 1 before proceeding.");
+                    return;
+                }
+            }
+
+            if (newStep >= 1 && newStep <= totalSteps) {
+                document.getElementById(`step${currentStep}`).classList.remove('active');
+                currentStep = newStep;
+                document.getElementById(`step${currentStep}`).classList.add('active');
+                updateUI();
+            }
+        }
+
+        function updateUI() {
+            const progress = (currentStep / totalSteps) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            if (currentStep === 1) {
+                prevBtn.style.opacity = '0';
+                prevBtn.style.pointerEvents = 'none';
+            } else {
+                prevBtn.style.opacity = '1';
+                prevBtn.style.pointerEvents = 'auto';
+            }
+
+            if (currentStep === totalSteps) {
+                nextBtn.innerText = 'Finish & Export';
+                generatePreview();
+            } else {
+                nextBtn.innerText = 'Next Step';
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function generatePreview() {
+            const p1 = document.getElementById('p1Draft').value.trim();
+            const p2 = document.getElementById('p2Draft').value.trim();
+            const p3 = document.getElementById('p3Draft').value.trim();
+            const p4 = document.getElementById('p4Draft').value.trim();
+            const p5 = document.getElementById('p5Draft').value.trim();
+
+            let output = `✍️ TITLE: OPINION ESSAY ON VIDEO GAMES & AGE RESTRICTIONS\n`;
+            output += `📝 PROMPT: Video games influence real-life behavior; age restrictions should be enforced and some games banned completely.\n\n`;
+            
+            if (!p1 && !p2 && !p3 && !p4 && !p5) {
+                output += "No paragraph drafts detected. Please navigate back to Step 3 to compose your essay.";
+            } else {
+                output += `PARAGRAPH 1: INTRODUCTION\n${p1 || "[Pending Paragraph 1]"}\n\n`;
+                output += `PARAGRAPH 2: MAIN SUPPORTING POINT\n${p2 || "[Pending Paragraph 2]"}\n\n`;
+                output += `PARAGRAPH 3: SECONDARY SUPPORTING POINT & EVIDENCE\n${p3 || "[Pending Paragraph 3]"}\n\n`;
+                output += `PARAGRAPH 4: OPPOSING VIEWPOINT & COUNTERARGUMENT\n${p4 || "[Pending Paragraph 4]"}\n\n`;
+                output += `PARAGRAPH 5: CONCLUSION & RESTATED THESIS\n${p5 || "[Pending Paragraph 5]"}`;
+            }
+
+            document.getElementById('finalEssayPreview').innerText = output;
+        }
+
+        function copyDraft() {
+            const previewText = document.getElementById('finalEssayPreview').innerText;
+            const dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = previewText;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+
+            const msg = document.getElementById('copyMessage');
+            msg.classList.remove('hidden');
+            setTimeout(() => {
+                msg.classList.add('hidden');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
